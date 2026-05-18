@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>!function(){var t=localStorage.getItem("pawsome_theme")||(window.matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light");document.documentElement.setAttribute("data-theme",t)}();</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PawMart — Checkout</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;700&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/checkout.css">
+</head>
+<body>
+
+<header>
+  <a href="shop.html" class="logo">🐾 PawMart</a>
+  <a href="shop.html" class="back-link">← Back to shop</a>
+</header>
+
+<div class="steps">
+  <div class="step done">
+    <div class="snum">✓</div> Cart
+  </div>
+  <span class="sep">/</span>
+  <div class="step active">
+    <div class="snum">2</div> Delivery
+  </div>
+  <span class="sep">/</span>
+  <div class="step">
+    <div class="snum">3</div> Payment
+  </div>
+  <span class="sep">/</span>
+  <div class="step">
+    <div class="snum">4</div> Confirm
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- LEFT -->
+  <div>
+
+    <div class="section">
+      <div class="section-title">Contact</div>
+      <div class="field"><label>Full name</label><input type="text" placeholder="Sarah Johnson"></div>
+      <div class="field"><label>Email</label><input type="email" placeholder="sarah@example.com"></div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Delivery address</div>
+      <div class="field"><label>Street</label><input type="text" placeholder="456 Oak Avenue"></div>
+      <div class="row3">
+        <div class="field"><label>City</label><input type="text" placeholder="Austin"></div>
+        <div class="field"><label>State</label><input type="text" placeholder="TX"></div>
+        <div class="field"><label>ZIP</label><input type="text" class="mono" placeholder="78701" maxlength="10"></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Shipping</div>
+      <div class="ship-opts">
+        <div class="sopt" onclick="selShip(this, 0)">
+          <div class="sopt-left">
+            <div class="dot"></div>
+            <div>
+              <div class="sname">Standard</div>
+              <div class="seta">4–6 business days</div>
+            </div>
+          </div>
+          <div class="sprice">Free</div>
+        </div>
+        <div class="sopt sel" onclick="selShip(this, 5.99)">
+          <div class="sopt-left">
+            <div class="dot on"></div>
+            <div>
+              <div class="sname">Express</div>
+              <div class="seta">1–2 business days</div>
+            </div>
+          </div>
+          <div class="sprice">$5.99</div>
+        </div>
+        <div class="sopt" onclick="selShip(this, 12.99)">
+          <div class="sopt-left">
+            <div class="dot"></div>
+            <div>
+              <div class="sname">Same-day</div>
+              <div class="seta">Order before 2 PM</div>
+            </div>
+          </div>
+          <div class="sprice">$12.99</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Payment</div>
+      <div class="pmethods">
+        <button class="pm active" onclick="selPay(this)">💳 Card</button>
+        <button class="pm" onclick="selPay(this)">🅿 PayPal</button>
+        <button class="pm" onclick="selPay(this)"> Apple Pay</button>
+      </div>
+      <div class="field"><label>Card number</label><input type="text" class="mono" placeholder="0000  0000  0000  0000" maxlength="19" oninput="fmtCard(this)"></div>
+      <div class="row2">
+        <div class="field"><label>Expiry</label><input type="text" class="mono" placeholder="MM / YY" maxlength="7" oninput="fmtExp(this)"></div>
+        <div class="field"><label>CVC</label><input type="text" class="mono" placeholder="000" maxlength="4"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- RIGHT -->
+  <div>
+
+    <div class="section" id="basket-panel">
+      <div class="section-title" id="basket-title">Your basket</div>
+      <!-- items injected by JS -->
+    </div>
+
+    <div class="section">
+      <div class="coup">
+        <input type="text" placeholder="Promo code" id="coup-in">
+        <button onclick="applyCoup()">Apply</button>
+      </div>
+      <div class="coup-ok" id="coup-ok">✓ 10% off applied!</div>
+
+      <div class="sumrow"><span class="k">Subtotal</span><span class="v" id="s-sub">$100.45</span></div>
+      <div class="sumrow"><span class="k">Delivery</span><span class="v" id="s-ship">$5.99</span></div>
+      <div class="sumrow"><span class="k">Tax (8%)</span><span class="v" id="s-tax">$8.52</span></div>
+      <div class="sumrow" id="s-disc-row" style="display:none">
+        <span class="k">Promo</span>
+        <span class="v" style="color:var(--green)" id="s-disc">−$10.05</span>
+      </div>
+      <div class="sumrow total"><span class="k">Total</span><span class="v" id="s-total">$114.96</span></div>
+
+      <button class="pay-btn" id="pay-btn" onclick="doPay()">
+        <span id="pay-label">Place order · $114.96</span>
+      </button>
+      <div class="secure-note">🔒 256-bit SSL · Secure checkout</div>
+    </div>
+
+  </div>
+</div>
+
+<script src="/js/checkout.js"></script>
+<script src="/js/darkmode.js"></script>
+</body>
+</html>
