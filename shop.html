@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>!function(){var t=localStorage.getItem("pawsome_theme")||(window.matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light");document.documentElement.setAttribute("data-theme",t)}();</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pawsome Pet Shop</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;700&family=Nunito:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/shop.css">
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo"><span>🐾</span> Pawsome</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="shop.html" class="active">Shop</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <button class="cart-btn" onclick="toggleCart()">🛒 Cart <span class="cart-count" id="cart-count">0</span></button>
+</nav>
+
+<div class="page-header">
+  <h1>Our Pet Shop</h1>
+  <p>500+ products for every kind of companion</p>
+</div>
+
+<div class="shop-layout">
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="filter-box">
+      <h3>🐾 Category</h3>
+      <div class="filter-group">
+        <label><input type="checkbox" value="food" onchange="filterProducts()"> Food & Treats</label>
+        <label><input type="checkbox" value="toys" onchange="filterProducts()"> Toys & Play</label>
+        <label><input type="checkbox" value="grooming" onchange="filterProducts()"> Grooming</label>
+        <label><input type="checkbox" value="accessories" onchange="filterProducts()"> Accessories</label>
+        <label><input type="checkbox" value="health" onchange="filterProducts()"> Health & Wellness</label>
+      </div>
+    </div>
+    <div class="filter-box">
+      <h3>🐶 Pet Type</h3>
+      <div class="filter-group">
+        <label><input type="checkbox" value="dog" onchange="filterProducts()"> Dogs</label>
+        <label><input type="checkbox" value="cat" onchange="filterProducts()"> Cats</label>
+        <label><input type="checkbox" value="rabbit" onchange="filterProducts()"> Rabbits</label>
+        <label><input type="checkbox" value="bird" onchange="filterProducts()"> Birds</label>
+        <label><input type="checkbox" value="fish" onchange="filterProducts()"> Fish</label>
+      </div>
+    </div>
+    <div class="filter-box">
+      <h3>💰 Max Price: $<span id="price-label">100</span></h3>
+      <input type="range" class="price-range" min="5" max="100" value="100" id="price-slider" oninput="updatePrice(this.value)">
+      <div class="price-labels"><span>$5</span><span>$100</span></div>
+    </div>
+    <button class="reset-btn" onclick="resetFilters()">Reset Filters</button>
+  </aside>
+
+  <!-- PRODUCTS -->
+  <div>
+    <div class="products-header">
+      <span class="products-count" id="prod-count">Showing all 12 products</span>
+      <select class="sort-select" onchange="sortProducts(this.value)">
+        <option value="default">Sort: Featured</option>
+        <option value="price-asc">Price: Low to High</option>
+        <option value="price-desc">Price: High to Low</option>
+        <option value="name">Name A–Z</option>
+      </select>
+    </div>
+    <div class="products-grid" id="products-grid">
+      <!-- Rendered by JS -->
+    </div>
+  </div>
+</div>
+
+<!-- CART DRAWER -->
+<div class="cart-overlay" id="cart-overlay" onclick="toggleCart()"></div>
+<div class="cart-drawer" id="cart-drawer">
+  <h2>🛒 Your Cart</h2>
+  <div class="cart-items" id="cart-items"></div>
+  <div class="cart-footer">
+    <div class="cart-total"><span>Total</span><span id="cart-total">$0.00</span></div>
+    <button class="checkout-btn" onclick="checkout()">Checkout →</button>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script src="js/shop.js"></script>
+<script src="js/darkmode.js"></script>
+</body>
+</html>
